@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="../Jquery/jquery.js"></script>
 
-    <title>Library System</title>
+    <title>Borrowed Books</title>
   
   </head>
   <style>
@@ -30,7 +30,7 @@
             </li>
 
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="userborrowed.php">Borrowed Books</a>
+                <a class="nav-link active" aria-current="page" href="index.php">Borrowed Books</a>
               </li>
 
             
@@ -48,7 +48,7 @@
       </div>
     </nav>
     <div class="container my-4">
-        <h2>Books</h2>
+        <h2>Borrowed Books</h2>
     <div class="search-container mb-3">
         <div class="input-group">
             <input type="text" class="form-control" id="search" placeholder="Search...">
@@ -69,7 +69,9 @@
         <th>Book ID</th>
         <th>Book Name</th>
         <th>Genre</th>
-        <th>Date</th>
+        <th>Borrowed Date</th>
+        <th>Borrowed By:</th>
+         <th>Status:</th>
         <th>ACTIONS</th>
       </tr>
       </thead>
@@ -77,7 +79,12 @@
   <?php
 
     include "connection.php";
-    $sql = "select * from crud2";
+        $sql = "SELECT b.Borrowed_ID, b.Date, b.Status, c.BookID, c.Genre, c.Book, u.id, u.name, u.Photo
+        FROM borrowed_tbl b
+        INNER JOIN crud2 c ON b.BookID = c.BookID
+        INNER JOIN user_form u ON b.UserID = u.id";
+
+    
     $result = $conn->query($sql);
     if(!$result){
       die("Invalid query!");
@@ -88,10 +95,11 @@
         <td>".$row['Book']."</td>
         <td>".$row['Genre']."</td>
         <td>".$row['Date']."</td>
-        
+        <td>".$row['name']."</td> 
+        <td>".$row['Status']."</td> 
         <td>
-        <a  class='btn btn-success'  href='edit.php?BookID=$row[BookID];?>'>Edit</a>
-        <a  class='btn btn-danger' href='delete.php?BookID=$row[BookID];?>'>Delete</a>
+       
+          <a class='btn btn-danger' href='borrowed_function/delete.php?Borrowed_ID=".$row['Borrowed_ID']."'>Delete</a>
         </td>
       </tr>";
     }
@@ -104,7 +112,7 @@
         $('#searchButton').on('click', function() {
             var search = $('#search').val();
             $.ajax({
-                url: 'search.php',
+                url: 'search2.php',
                 type: 'POST',
                 data: { search: search },
                 success: function(response) {

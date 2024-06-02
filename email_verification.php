@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Content
                 $mail->isHTML(true);
                 $mail->Subject = 'Email Verification';
-                $mail->Body = 'Here is your verification link: <a href="http://localhost/SIERRA/register_photo?token=' . urlencode(base64_encode($email)) . '&verifiedmessage=true">Verify Email</a>';
+                $mail->Body = 'Here is your verification link: <a href="http://localhost/library Sierra/register_photo?token=' . urlencode(base64_encode($email)) . '&verifiedmessage=true">Verify Email</a>';
 
                 $mail->send();
                  echo "<script>window.location.href='email_verification.php?register_success1=true';</script>";
