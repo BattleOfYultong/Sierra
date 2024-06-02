@@ -1,8 +1,8 @@
 <?php
     include "connection.php";
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        $stmt = $conn->prepare("DELETE from `crud2` WHERE id=?");
+    if(isset($_GET['BookID'])){
+        $id = $_GET['BookID'];
+        $stmt = $conn->prepare("DELETE from `crud2` WHERE BookID=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
     }

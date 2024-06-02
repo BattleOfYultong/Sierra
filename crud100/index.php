@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="../Jquery/jquery.js"></script>
 
-    <title>Warehouse Inventory</title>
+    <title>Library System</title>
   
   </head>
   <style>
@@ -22,16 +22,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">Warehouse Inventory</a>
+        <a class="navbar-brand" href="index.php">Library System</a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
 
-             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="User_List.php">User-List</a>
-            </li>
+            
 
              <li class="nav-item ">
               <a type="button" class="btn btn-danger nav-link active" href="../logout.php">Log out</a>
@@ -46,6 +44,7 @@
       </div>
     </nav>
     <div class="container my-4">
+        <h2>Books</h2>
     <div class="search-container mb-3">
         <div class="input-group">
             <input type="text" class="form-control" id="search" placeholder="Search...">
@@ -59,14 +58,14 @@
 
 
     <div class="container my-4">
+    
     <table class="table" id="resultTable">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>MODEL</th>
-        <th>BRAND</th>
-        <th>CONDITION</th>
-        <th>JOINING DATE</th>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Genre</th>
+        <th>Date</th>
         <th>ACTIONS</th>
       </tr>
       </thead>
@@ -81,14 +80,14 @@
     }
     while($row=$result->fetch_assoc()){
       echo "<tr>
-        <th>".$row['id']."</th>
-        <td>".$row['model']."</td>
-        <td>".$row['brand']."</td>
-        <td>".$row['condition']."</td>
-        <td>".$row['join_date']."</td>
+        <th>".$row['BookID']."</th>
+        <td>".$row['Book']."</td>
+        <td>".$row['Genre']."</td>
+        <td>".$row['Date']."</td>
+        
         <td>
-        <a  class='btn btn-success'  href='edit.php?id=$row[id];?>'>Edit</a>
-        <a  class='btn btn-danger' href='delete.php?id=$row[id];?>'>Delete</a>
+        <a  class='btn btn-success'  href='edit.php?BookID=$row[BookID];?>'>Edit</a>
+        <a  class='btn btn-danger' href='delete.php?BookID=$row[BookID];?>'>Delete</a>
         </td>
       </tr>";
     }

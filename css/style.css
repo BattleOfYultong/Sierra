@@ -10,9 +10,10 @@
   text-decoration: none;
 }
 #bg {
-  background-image: url("logo.png");
-  background-size: 60%;
-  background-repeat: repeat;
+  background-image: url("bg.jpg");
+  background-position: center;
+  background-size: no-repeat;
+  background-size: cover;
 }
 
 .container {
